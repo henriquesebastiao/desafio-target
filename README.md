@@ -1,6 +1,11 @@
 # Desafio técnico Target Sistemas 📝
 
-## Questão 1
+Implementação de algoritmos para questões do teste técnico para vaga de Estágio em Análise e Desenvolvimento
+
+> [!TIP]
+> Abaixo estão listadas as questões resolvidas no teste, cada questão possui um link em seu título para o arquivo com o código do algoritmo em Python, você também pode ver uma versão do código com comentários explicativos sobre a implementação clicando em `Código 💡`
+
+## [Questão 1](1.py)
 
 Observe o trecho de código abaixo:
 
@@ -12,26 +17,32 @@ Imprimir(SOMA);
 
 Ao final do processamento, qual será o valor da variável SOMA?
 
+**R - Ao final do processamento a variável soma terá o valor de 91.**
+
+<details><summary>Código 💡</summary><br>
+
 ```python
 indice = 13
 soma = 0
 k = 0
 
 while k < indice:
-    k += 1
-    soma += k
+    k += 1  # Soma 1 a variável k
+    soma += k  # Soma o valor de k a variável soma
 
 print(soma)  # soma = 91
 ```
+</details>
 
-**R - Ao final do processamento a variável soma terá o valor de 91.**
-
-## Questão 2
+## [Questão 2](2.py)
 
 Dado a sequência de Fibonacci, onde se inicia por 0 e 1 e o próximo valor sempre será a soma dos 2 valores anteriores (exemplo: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34...), escreva um programa na linguagem que desejar onde, informado um número, ele calcule a sequência de Fibonacci e retorne uma mensagem avisando se o número informado pertence ou não a sequência.
 
-IMPORTANTE: Esse número pode ser informado através de qualquer entrada de sua preferência ou pode ser previamente definido no código.
+> [!IMPORTANT]
+> Esse número pode ser informado através de qualquer entrada de sua preferência ou pode ser previamente definido no código.
 
+<details><summary>Código 💡</summary><br>
+    
 ```python
 while True:
     number = input('Informe um número: ')
@@ -52,8 +63,9 @@ if fibonacci[-1] == number:
 else:
     print(f'O número {number} não pertence a sequência de Fibonacci.')
 ```
+</details>
 
-## Questão 3
+## [Questão 3](3.py)
 
 Dado um vetor que guarda o valor de faturamento diário de uma distribuidora, faça um programa, na linguagem que desejar, que calcule e retorne:
 
@@ -61,10 +73,17 @@ Dado um vetor que guarda o valor de faturamento diário de uma distribuidora, fa
 - O maior valor de faturamento ocorrido em um dia do mês;
 - Número de dias no mês em que o valor de faturamento diário foi superior à média mensal.
 
-**IMPORTANTE:**
+> [!IMPORTANT]
+> - Usar o json ou xml disponível como fonte dos dados do faturamento mensal;
+> - Podem existir dias sem faturamento, como nos finais de semana e feriados. Estes dias devem ser ignorados no cálculo da média.
 
-- Usar o json ou xml disponível como fonte dos dados do faturamento mensal;
-- Podem existir dias sem faturamento, como nos finais de semana e feriados. Estes dias devem ser ignorados no cálculo da média.
+**Resposta:**
+
+- O menor faturamento ocorrido no mês foi deR$ 373.78 no dia 14.
+- O maior faturamento ocorrido no mês foi deR$ 48924.24 no dia 16.
+- O número de dias em que o faturamento diário foi superior à média mensal foi de 10 dias.
+
+<details><summary>Código 💡</summary><br>
 
 ```python
 import json
@@ -109,8 +128,9 @@ print(
     f'foi superior à média mensal foi de {higher_days} dias.'
 )
 ```
+</details>
 
-## Questão 4
+## [Questão 4](4.py)
 
 Dado o valor de faturamento mensal de uma distribuidora, detalhado por estado:
 
@@ -129,6 +149,11 @@ Escreva um programa na linguagem que desejar onde calcule o percentual de repres
 - MG - 16.17%
 - ES - 15.03%
 - OUTROS - 10.98%
+
+> [!TIP]
+> Abaixo segue um gráfico com a representação percentual da análise de distribuição por estado, caso queiro ver o código em Jupyter Notebook clique [aqui](4-notebook.ipynb)
+
+<details><summary>Código 💡</summary><br>
 
 ```python
 invoicing = {
@@ -149,16 +174,19 @@ print(
 for state, value in invoicing.items():
     print(f'{state.upper()} - {((value / total) * 100):.2f}%')
 ```
+</details>
 
-## Questão 5
+![Gráfico](https://github.com/user-attachments/assets/90af1410-a788-4716-a347-f831de0c18fa)
+
+## [Questão 5](5.py)
 
 Escreva um programa que inverta os caracteres de um string.
 
-IMPORTANTE:
+> [!IMPORTANT]
+> - Essa string pode ser informada através de qualquer entrada de sua preferência ou pode ser previamente definida no código;
+> - Evite usar funções prontas, como, por exemplo, reverse.
 
-- Essa string pode ser informada através de qualquer entrada de sua preferência ou pode ser previamente definida no código;
-
-- Evite usar funções prontas, como, por exemplo, reverse.
+<details><summary>Código 💡</summary><br>
 
 ```python
 string = input('Insira a string para ser invertida: ')
@@ -169,5 +197,5 @@ for i in range(len(string) - 1, -1, -1):
 
 print('String original:', string)
 print('String invertida:', inverted)
-
 ```
+</details>
