@@ -1,6 +1,6 @@
 on: [push, pull_request]
 
-name: Code Quality
+name: Test
 
 jobs:
   lint:
@@ -25,3 +25,30 @@ jobs:
       
       - name: Run Ruff
         run: poetry run task lint
+  
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Copy files from repo
+        uses: actions/checkout@v4
+
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+          poetry config virtualenvs.create false
+          poetry install
+      - name: Run Tests
+        run: poetry run task test
+      - name: Store coverage files
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-html
+          path: htmlcov

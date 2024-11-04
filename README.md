@@ -1,11 +1,14 @@
 # Desafio técnico Target Sistemas 📝
 
+[![CI](https://github.com/henriquesebastiao/desafio-target/actions/workflows/ci.yml/badge.svg)](https://github.com/henriquesebastiao/desafio-target/actions/workflows/ci.yml)
+[![coverage](https://coverage-badge.samuelcolvin.workers.dev/henriquesebastiao/desafio-target.svg)](https://coverage-badge.samuelcolvin.workers.dev/redirect/henriquesebastiao/desafio-target)
+
 Implementação de algoritmos para questões do teste técnico para vaga de Estágio em Análise e Desenvolvimento
 
 > [!TIP]
 > Abaixo estão listadas as questões resolvidas no teste, cada questão possui um link em seu título para o arquivo com o código do algoritmo em Python, você também pode ver uma versão do código com comentários explicativos sobre a implementação clicando em `Código 💡`
 
-## [Questão 1](1.py)
+## [Questão 1](one.py)
 
 Observe o trecho de código abaixo:
 
@@ -34,7 +37,7 @@ print(soma)  # soma = 91
 ```
 </details>
 
-## [Questão 2](2.py)
+## [Questão 2](two.py)
 
 Dado a sequência de Fibonacci, onde se inicia por 0 e 1 e o próximo valor sempre será a soma dos 2 valores anteriores (exemplo: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34...), escreva um programa na linguagem que desejar onde, informado um número, ele calcule a sequência de Fibonacci e retorne uma mensagem avisando se o número informado pertence ou não a sequência.
 
@@ -44,28 +47,26 @@ Dado a sequência de Fibonacci, onde se inicia por 0 e 1 e o próximo valor semp
 <details><summary>Código 💡</summary><br>
     
 ```python
-while True:
-    number = input('Informe um número: ')
-    if not number.isdigit:
-        print('Você não informou um número, tente novamente.\n')
-        continue
-    number = float(number)
-    break
+def number_in_fibonacci(number: int):
+    fibonacci = [0, 1]
 
-fibonacci = [0, 1]
+    while fibonacci[-1] < number:
+        new_value = fibonacci[-1] + fibonacci[-2]
+        fibonacci.append(new_value)
 
-while fibonacci[-1] < number:
-    new_value = fibonacci[-1] + fibonacci[-2]
-    fibonacci.append(new_value)
+    if fibonacci[-1] == number:
+        print(f'O número {int(number)} pertence a sequência de Fibonacci.')
+        return True
 
-if fibonacci[-1] == number:
-    print(f'O número {int(number)} pertence a sequência de Fibonacci.')
-else:
     print(f'O número {number} não pertence a sequência de Fibonacci.')
+    return False
+
+
+test_number = number_in_fibonacci(test_number)
 ```
 </details>
 
-## [Questão 3](3.py)
+## [Questão 3](three.py)
 
 Dado um vetor que guarda o valor de faturamento diário de uma distribuidora, faça um programa, na linguagem que desejar, que calcule e retorne:
 
@@ -116,21 +117,21 @@ for day in data:
         higher_days += 1
 
 print(
-    'O menor faturamento ocorrido no mês foi de'
+    'O menor faturamento ocorrido no mês foi de '
     f'R$ {min_value["valor"]:.2f} no dia {min_value["dia"]}.'
 )
 print(
-    'O maior faturamento ocorrido no mês foi de'
+    'O maior faturamento ocorrido no mês foi de '
     f'R$ {max_value["valor"]:.2f} no dia {max_value["dia"]}.'
 )
 print(
-    'O número de dias em que o faturamento diário'
+    'O número de dias em que o faturamento diário '
     f'foi superior à média mensal foi de {higher_days} dias.'
 )
 ```
 </details>
 
-## [Questão 4](4.py)
+## [Questão 4](four.py)
 
 Dado o valor de faturamento mensal de uma distribuidora, detalhado por estado:
 
@@ -156,7 +157,7 @@ Escreva um programa na linguagem que desejar onde calcule o percentual de repres
 <details><summary>Código 💡</summary><br>
 
 ```python
-invoicing = {
+test_data = {
     'sp': 67836.43,
     'rj': 36678.66,
     'mg': 29229.88,
@@ -164,15 +165,23 @@ invoicing = {
     'outros': 19849.53,
 }
 
-total = sum(invoicing.values())
+
+def calculate_percentages(invoicing: dict[str, float]):
+    total = sum(invoicing.values())
+    percentages = {
+        state: (value / total) * 100 for state, value in invoicing.items()
+    }
+    return percentages
+
 
 print(
     'O percentual de representação de cada estado'
     'no faturamento mensal da distribuidora foi de:'
 )
 
-for state, value in invoicing.items():
-    print(f'{state.upper()} - {((value / total) * 100):.2f}%')
+for state, percentage in calculate_percentages(test_data).items():
+    print(f'{state.upper()} - {percentage:.2f}%')
+
 ```
 </details>
 
@@ -189,13 +198,15 @@ Escreva um programa que inverta os caracteres de um string.
 <details><summary>Código 💡</summary><br>
 
 ```python
-string = input('Insira a string para ser invertida: ')
-inverted = ''
+def reverse_str(string: str):
+    inverted = ''
+    for i in range(len(string) - 1, -1, -1):
+        inverted += string[i]
+    return inverted
 
-for i in range(len(string) - 1, -1, -1):
-    inverted += string[i]
 
+string = 'Test'
 print('String original:', string)
-print('String invertida:', inverted)
+print('String invertida:', reverse_str(string))
 ```
 </details>

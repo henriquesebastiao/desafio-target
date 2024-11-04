@@ -28,14 +28,14 @@ for day in data:
         higher_days += 1
 
 print(
-    'O menor faturamento ocorrido no mês foi de'
+    'O menor faturamento ocorrido no mês foi de '
     f'R$ {min_value["valor"]:.2f} no dia {min_value["dia"]}.'
 )
 print(
-    'O maior faturamento ocorrido no mês foi de'
+    'O maior faturamento ocorrido no mês foi de '
     f'R$ {max_value["valor"]:.2f} no dia {max_value["dia"]}.'
 )
 print(
-    'O número de dias em que o faturamento diário'
+    'O número de dias em que o faturamento diário '
     f'foi superior à média mensal foi de {higher_days} dias.'
 )
