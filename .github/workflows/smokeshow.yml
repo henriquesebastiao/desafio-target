@@ -22,7 +22,7 @@ jobs:
 
       - uses: dawidd6/action-download-artifact@v6
         with:
-          workflow: test.yml
+          workflow: ci.yml
           commit: ${{ github.event.workflow_run.head_sha }}
 
       - run: smokeshow upload coverage-html
